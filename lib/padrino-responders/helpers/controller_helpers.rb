@@ -23,7 +23,7 @@ module Padrino
         # Returns name of current controller
         #
         def controller_name
-          request.route.controller.to_s
+          @app.route.current_controller
         end
         
         ##

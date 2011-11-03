@@ -48,18 +48,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<riot>, [">= 0.11.3"])
       s.add_development_dependency(%q<riot-rack>, [">= 0"])
-      s.add_runtime_dependency(%q<padrino>, ["~> 0.9.10"])
+      s.add_runtime_dependency(%q<padrino>, [">= 0.9.10.2"])
       s.add_runtime_dependency(%q<rack-flash>, [">= 0.1.1"])
     else
       s.add_dependency(%q<riot>, [">= 0.11.3"])
       s.add_dependency(%q<riot-rack>, [">= 0"])
-      s.add_dependency(%q<padrino>, ["~> 0.9.10"])
+      s.add_dependency(%q<padrino>, [">= 0.9.10.2"])
       s.add_dependency(%q<rack-flash>, [">= 0.1.1"])
     end
   else
     s.add_dependency(%q<riot>, [">= 0.11.3"])
     s.add_dependency(%q<riot-rack>, [">= 0"])
-    s.add_dependency(%q<padrino>, ["~> 0.9.10"])
+    s.add_dependency(%q<padrino>, [">= 0.9.10.1"])
     s.add_dependency(%q<rack-flash>, [">= 0.1.1"])
   end
 end
