@@ -159,7 +159,11 @@ module Padrino
           valid = true if object.errors.length == 0
         end 
         return valid
-      end  
+      end     
+      
+      def request()
+        self.class.request
+      end
       
       def notify(kind, message, *args, &block)
         sefl.class.notify(kind, message, *args, &block)
