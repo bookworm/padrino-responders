@@ -17,7 +17,7 @@ module Padrino
       end  
       
       def put() 
-        message = message(update)
+        message = message(:update)
         if valid?   
           if request.xhr?
             ajax_obj = {
@@ -60,7 +60,7 @@ module Padrino
       end
       
       def post()
-        message = message(save) 
+        message = message(:save) 
         if valid?   
           if request.xhr?
             ajax_obj = {
@@ -103,7 +103,7 @@ module Padrino
       end  
       
       def delete()
-        message = self.message(destroy)     
+        message = message(:destroy)     
         
         if request.xhr?     
           ajax_obj = {

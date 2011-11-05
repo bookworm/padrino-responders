@@ -54,17 +54,15 @@ module Padrino
     module Respond
       
       def respond(object, *options)  
-        if Object.const_defined?("Responders::#{controller_name.capitalize}")
-          responder = Object.const_get("Responders::#{controller_name.capitalize}").new        
-        elsif settings.responder
-          responder = Object.const_get("Responders::#{settings.responder}").new 
+        if Padrino::Responders.const_defined?("#{controller_name.capitalize}")
+          responder = Padrino::Responders.const_get("#{controller_name.capitalize}").new        
         else
-          responder = Responders::Default.new
+          responder = Padrino::Responders::Default.new
         end  
         responder.options = options.extract_options!   
         responder.object  = object  
         responder.class   = self
-        return responder.respond     
+        return responder.respond    
       end
     end # Default
   end # Responders  
