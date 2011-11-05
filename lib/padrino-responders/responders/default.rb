@@ -173,6 +173,10 @@ module Padrino
         return valid
       end  
       
+      def redirect(args)
+        self.class.redirect(args)
+      end
+      
       def human_model_name()
         self.class.human_model_name(object)
       end
