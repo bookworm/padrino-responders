@@ -157,7 +157,11 @@ module Padrino
           valid = true if object.errors.length == 0
         end 
         return valid
-      end  
+      end
+      
+      def try_render()    
+        self.class.try_render(object)
+      end
       
       def redirect(args)
         self.class.redirect(args)

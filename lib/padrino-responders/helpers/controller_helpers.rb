@@ -12,7 +12,7 @@ module Padrino
         ##
         # Trys to render and then falls back to to_format
         #
-        def try_render()  
+        def try_render(object)  
           begin
             render "#{controller_name}/#{action_name}"
           rescue
