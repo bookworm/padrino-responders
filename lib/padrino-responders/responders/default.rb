@@ -127,18 +127,7 @@ module Padrino
         else
           try_render
         end
-      end 
-       
-      def message(type) 
-        return object.errors.full_messages if !valid?
-        object_notice      = "responder.messages.#{controller_name}.#{type}"
-        alternative_notice = "responder.messages.default.#{type}"         
-        object_notice = self.class.t(object_notice, :model => human_model_name)   
-        alternative_notice = self.class.t(alternative_notice, :model => human_model_name)
-        return object_notice unless object_notice.blank?
-        return alternative_notice unless alternative_notice.blank?    
-        return 'No message found in locale'                       
-      end
+      end   
       
       def default()  
         if location 
@@ -151,7 +140,18 @@ module Padrino
           try_render                                                             
         end
       end
-
+       
+      def message(type) 
+        return object.errors.full_messages if !valid?
+        object_notice      = "responder.messages.#{controller_name}.#{type}"
+        alternative_notice = "responder.messages.default.#{type}"         
+        object_notice = self.class.t(object_notice, :model => human_model_name)   
+        alternative_notice = self.class.t(alternative_notice, :model => human_model_name)
+        return object_notice unless object_notice.blank?
+        return alternative_notice unless alternative_notice.blank?    
+        return 'No message found in locale'                       
+      end
+      
       def valid?()
         valid = false
         valid = object.valid? if object.respond_to?(:valid?)  
