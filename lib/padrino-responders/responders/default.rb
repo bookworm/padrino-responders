@@ -60,7 +60,7 @@ module Padrino
       end
       
       def post()
-        message = message(:save) 
+        message = message(:create) 
         if valid?   
           if request.xhr?
             ajax_obj = {
