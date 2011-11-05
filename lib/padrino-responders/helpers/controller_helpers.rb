@@ -7,6 +7,23 @@ module Padrino
         #
         def notify(kind, message, *args, &block)
           settings.notifier.say(self, kind, message, *args, &block) if settings.notifier
+        end 
+        
+        ##
+        # Trys to render and then falls back to to_format
+        #
+        def try_render()  
+          begin
+            render "#{controller_name}/#{action_name}"
+          rescue
+            case self.class.content_type
+            when :json  
+              return object.to_json if object.respond_to?(:to_json)
+            when :xml      
+              return object.to_xml if object.respond_to?(:to_xml)       
+            end      
+            raise ::Padrino::Responders::ResponderError, "Couldn't figure out a way to respond to this."
+          end
         end
         
         ##

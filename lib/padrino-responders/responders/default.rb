@@ -149,21 +149,7 @@ module Padrino
           try_render                                                             
         end
       end
-      
-      def try_render()  
-        begin
-          render "#{controller_name}/#{action_name}"
-        rescue
-          case self.class.content_type
-          when :json  
-            return object.to_json if object.respond_to?(:to_json)
-          when :xml      
-            return object.to_xml if object.respond_to?(:to_xml)       
-          end      
-          raise ResponderError, "Couldn't figure out a way to respond to this."
-        end
-      end  
-      
+
       def valid?()
         valid = false
         valid = object.valid? if object.respond_to?(:valid?)  
