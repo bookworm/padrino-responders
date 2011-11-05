@@ -18,21 +18,7 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README.rdoc"
   ]
-  s.files = [
-    "LICENSE",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION",
-    "lib/padrino-responders.rb",
-    "lib/padrino-responders/default.rb",
-    "lib/padrino-responders/helpers/controller_helpers.rb",
-    "lib/padrino-responders/locale/en.yml",
-    "lib/padrino-responders/locale/pl.yml",
-    "lib/padrino-responders/notifiers/flash_notifier.rb",
-    "padrino-responders.gemspec",
-    "test/padrino_responders_test.rb",
-    "test/teststrap.rb"
-  ]
+  s.files  = `git ls-files`.split("\n")
   s.homepage = %q{http://github.com/nu7hatch/padrino-responders}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.2}
