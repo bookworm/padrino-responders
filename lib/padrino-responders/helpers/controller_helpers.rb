@@ -16,7 +16,7 @@ module Padrino
           begin
             render "#{controller_name}/#{action_name}"
           rescue
-            case self.class.content_type
+            case content_type
             when :json  
               return object.to_json if object.respond_to?(:to_json)
             when :xml      
