@@ -131,8 +131,8 @@ module Padrino
         return object.errors.full_messages if !valid?
         object_notice      = "responder.messages.#{controller_name}.#{type}"
         alternative_notice = "responder.messages.default.#{type}"         
-        object_notice = t(object_notice)   
-        alternative_notice = t(alternative_notice)
+        object_notice = self.class.t(object_notice, :model => human_model_name)   
+        alternative_notice = self.class.t(alternative_notice, :model => human_model_name)
         return object_notice unless object_notice.blank?
         return alternative_notice unless alternative_notice.blank?    
         return 'No message found in locale'                       
@@ -171,6 +171,10 @@ module Padrino
           valid = true if object.errors.length == 0
         end 
         return valid
+      end  
+      
+      def human_model_name()
+        self.class.human_model_name(object)
       end
       
       def controller_name()
