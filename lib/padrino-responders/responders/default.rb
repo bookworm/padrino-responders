@@ -1,5 +1,7 @@
 module Padrino
-  module Responders
+  module Responders       
+    class ResponderError < RuntimeError
+    end
     class Default             
       include Padrino::Responders::StatusCodes
       attr_accessor :options, :object, :class
