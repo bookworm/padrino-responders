@@ -2,7 +2,7 @@ module Padrino
   module Responders
     class Default             
       include Padrino::Responders::StatusCodes
-      attr_accessor :options, :object
+      attr_accessor :options, :object, :class
       
       def respond()
         if self.class.request.put?
