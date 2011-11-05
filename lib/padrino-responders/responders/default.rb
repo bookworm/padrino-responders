@@ -153,7 +153,7 @@ module Padrino
       def valid?()
         valid = false
         valid = object.valid? if object.respond_to?(:valid?)  
-        if object.respond_to?(:errors) && if !object.respond_to?(:valid?)
+        if object.respond_to?(:errors) && !object.respond_to?(:valid?)
           valid = true if object.errors.length == 0
         end 
         return valid
