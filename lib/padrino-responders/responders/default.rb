@@ -32,7 +32,7 @@ module Padrino
               ajax_obj[:data][:redirect] = location
               return ajax_obj.to_json 
             else
-              self.class.notify(:notice, message)
+              notify(:notice, message)
               redirect location
             end      
           else 
@@ -50,7 +50,7 @@ module Padrino
             return ajax_object.to_json
           else     
             if location   
-              self.class.notify(:error, message)  
+              notify(:error, message)  
               redirect location 
             else
               try_render
@@ -75,7 +75,7 @@ module Padrino
               ajax_obj[:data][:redirect] = location
               return ajax_obj.to_json 
             else
-              self.class.notify(:notice, message)
+              notify(:notice, message)
               redirect location
             end      
           else 
@@ -93,7 +93,7 @@ module Padrino
             return ajax_object.to_json
           else     
             if location   
-              self.class.notify(:error, message)  
+              notify(:error, message)  
               redirect location 
             else
               try_render
@@ -119,7 +119,7 @@ module Padrino
             ajax_obj[:data][:redirect] = location
             return ajax_obj.to_json 
           else
-            self.class.notify(:notice, message)
+            notify(:notice, message)
             redirect location
           end   
         else
@@ -157,6 +157,10 @@ module Padrino
           valid = true if object.errors.length == 0
         end 
         return valid
+      end  
+      
+      def notify(kind, message, *args, &block)
+        sefl.class.notify(kind, message, *args, &block)
       end
       
       def try_render()    
