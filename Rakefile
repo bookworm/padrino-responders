@@ -21,7 +21,7 @@ begin
     g.add_development_dependency "riot", ">= 0.11.3"
     g.add_development_dependency "riot-rack", ">= 0"
     g.add_dependency "padrino", "~> 0.9.10"
-    g.add_dependency "rack-flash", ">= 0.1.1"
+    g.add_dependency "sinatra-flash", ">= 0.3.0"
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"
