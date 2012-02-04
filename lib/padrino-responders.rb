@@ -2,14 +2,14 @@ require 'padrino-core'
 require 'padrino-gen'
 require 'padrino-helpers'
 
-require 'rack-flash'
+require 'sinatra/flash'
 
 FileSet.glob_require('padrino-responders/*.rb', __FILE__)
 FileSet.glob_require('padrino-responders/{helpers,notifiers,responders}/*.rb', __FILE__)
 
 module Padrino
   ##
-  # This component is used to create slim controllers without unnecessery 
+  # This component is used to create slim controllers without unnecessery
   # and repetitive code.
   #
   module Responders

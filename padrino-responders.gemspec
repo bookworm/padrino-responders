@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kris 'nu7hatch' Kowalik"]
   s.date = %q{2011-03-04}
-  s.description = %q{      This component is used to create slim controllers without unnecessery 
+  s.description = %q{      This component is used to create slim controllers without unnecessery
       and repetitive code.
 }
   s.email = %q{kriss.kowalik@gmail.com}
@@ -35,18 +35,18 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<riot>, [">= 0.11.3"])
       s.add_development_dependency(%q<riot-rack>, [">= 0"])
       s.add_runtime_dependency(%q<padrino>, [">= 0.10.2"])
-      s.add_runtime_dependency(%q<rack-flash>, [">= 0.1.1"])
+      s.add_runtime_dependency(%q<sinatra-flash>, [">= 0.3.0"])
     else
       s.add_dependency(%q<riot>, [">= 0.11.3"])
       s.add_dependency(%q<riot-rack>, [">= 0"])
       s.add_dependency(%q<padrino>, [">= 0.10.2"])
-      s.add_dependency(%q<rack-flash>, [">= 0.1.1"])
+      s.add_dependency(%q<sinatra-flash>, [">= 0.3.0"])
     end
   else
     s.add_dependency(%q<riot>, [">= 0.11.3"])
     s.add_dependency(%q<riot-rack>, [">= 0"])
     s.add_dependency(%q<padrino>, [">= 0.10.2"])
-    s.add_dependency(%q<rack-flash>, [">= 0.1.1"])
+    s.add_dependency(%q<sinatra-flash>, [">= 0.3.0"])
   end
 end
 
