@@ -20,7 +20,8 @@ module Padrino
       def registered(app)
         app.enable :sessions
         app.enable :flash
-        app.helpers Padrino::Responders::Helpers::ControllerHelpers
+        app.helpers Padrino::Responders::Helpers::ControllerHelpers   
+        app.helpers Padrino::Responders::Helpers::ResponseHelpers
         app.set :notifier, Padrino::Responders::Notifiers::FlashNotifier
         app.send :include, Padrino::Responders::Respond
       end
