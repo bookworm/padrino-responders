@@ -14,12 +14,7 @@ module Padrino
         #
         def try_render(object)
           begin       
-            original_path = self.route.instance_variable_get('@original_path').gsub(/(\(|\/:).+/, '/')
-            if original_path != '//' and original_path != '/'  
-              render original_path + action_name              
-            else           
-              render "#{controller_name}/#{action_name}"
-            end
+            render "#{controller_name}/#{action_name}"
           rescue
             case content_type
             when :json
