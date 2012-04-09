@@ -15,9 +15,9 @@ module Padrino
         def try_render(object)
           begin       
             original_path = self.route.instance_variable_get('@original_path').gsub(/(\(|\/:).+/, '/')
-            if original_path != '//'
-              render self.route.instance_variable_get('@original_path').gsub(/(\(|\/:).+/, '/') + action_name              
-            else
+            if original_path != '//' and original_path != '/'  
+              render original_path + action_name              
+            else           
               render "#{controller_name}/#{action_name}"
             end
           rescue
