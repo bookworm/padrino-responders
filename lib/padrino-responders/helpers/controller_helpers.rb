@@ -16,15 +16,14 @@ module Padrino
           begin       
             render "#{controller_name}/#{action_name}"
           rescue
-            case content_type
-            when :json
-              return object.to_json if object.respond_to?(:to_json)
-            when :xml
+            if content_type == :json or mime_type(:json) == request.preferred_type 
+              return object.to_json if object.respond_to?(:to_json)    
+            end
+            
+            if content_type == :xml or mime_type(:xml) == request.preferred_type
               return object.to_xml if object.respond_to?(:to_xml)
-            end         
-            
-            return object.to_json if object.respond_to?(:to_json) and request.xhr?
-            
+            end  
+                                           
             raise ::Padrino::Responders::ResponderError, "Couldn't figure out a way to respond to this."
           end
         end
