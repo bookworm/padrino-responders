@@ -21,7 +21,10 @@ module Padrino
               return object.to_json if object.respond_to?(:to_json)
             when :xml
               return object.to_xml if object.respond_to?(:to_xml)
-            end
+            end         
+            
+            return object.to_json if object.respond_to?(:to_json) and request.xhr?
+            
             raise ::Padrino::Responders::ResponderError, "Couldn't figure out a way to respond to this."
           end
         end
