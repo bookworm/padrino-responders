@@ -49,7 +49,7 @@ module Padrino
               } 
             }
             ajax_obj[:data][:redirect] = location if location
-            return ajax_object.to_json
+            return ajax_obj.to_json
           else     
             if location   
               notify(:error, message)  
@@ -92,7 +92,7 @@ module Padrino
               } 
             }
             ajax_obj[:data][:redirect] = location if location
-            return ajax_object.to_json
+            return ajax_obj.to_json
           else     
             if location   
               notify(:error, message)  
