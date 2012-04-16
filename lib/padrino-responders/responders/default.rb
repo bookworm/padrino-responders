@@ -4,7 +4,11 @@ module Padrino
     end
     class Default             
       include Padrino::Responders::StatusCodes
-      attr_accessor :options, :object, :class
+      attr_accessor :options, :object, :class     
+      
+      def initialize()  
+        @options = {}
+      end
       
       def respond()
         if self.class.request.put?
