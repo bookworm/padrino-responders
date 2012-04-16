@@ -14,7 +14,7 @@ module Padrino
         #
         def try_render(object)
           begin       
-            render "#{controller_name}/#{action_name}"
+            render "#{controller_name}/#{action_name}", :strict_format => true 
           rescue
             if content_type == :json or mime_type(:json) == request.preferred_type 
               return object.to_json if object.respond_to?(:to_json)    
