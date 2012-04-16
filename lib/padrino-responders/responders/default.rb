@@ -170,7 +170,7 @@ module Padrino
       end
       
       def notify(kind, message, *args, &block)
-        sefl.class.notify(kind, message, *args, &block)
+        self.class.notify(kind, message, *args, &block)
       end
       
       def try_render()    
