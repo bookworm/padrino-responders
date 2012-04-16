@@ -29,7 +29,7 @@ module Padrino
             ajax_obj = {
               :status => :success, 
               :data => { 
-                object.singularize => object
+                object.class.to_s.singularize.downcase => object
               } 
             }
           end  
@@ -72,7 +72,7 @@ module Padrino
             ajax_obj = {
               :status => :success, 
               :data => { 
-                object.singularize => object
+                object.class.to_s.singularize.downcase => object
               } 
             }
           end  
