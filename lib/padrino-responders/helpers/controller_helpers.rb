@@ -15,7 +15,7 @@ module Padrino
         def try_render(object)
           begin       
             render "#{controller_name}/#{action_name}", :strict_format => true 
-          rescue
+          rescue Exception => e
             if content_type == :json or mime_type(:json) == request.preferred_type 
               return object.to_json if object.respond_to?(:to_json)    
             end
@@ -24,7 +24,7 @@ module Padrino
               return object.to_xml if object.respond_to?(:to_xml)
             end  
                                            
-            raise ::Padrino::Responders::ResponderError, "Couldn't figure out a way to respond to this."
+            raise ::Padrino::Responders::ResponderError, e.message
           end
         end
 
