@@ -56,6 +56,14 @@ module Padrino
           else
             t("models.#{object.class.to_s.underscore}", :default => object.class.to_s.humanize)
           end
+        end   
+        
+        ## 
+        # Returns url
+        #
+        def back_or_default(default)    
+          return_to = session.delete(:return_to)   
+          return_to || default
         end
       end # ControllerHelpers
     end # Helpers

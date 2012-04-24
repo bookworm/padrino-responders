@@ -25,7 +25,7 @@ module Padrino
           else 
             flash[:notice] = message
           end       
-        end
+        end       
       end
     end  
   end
