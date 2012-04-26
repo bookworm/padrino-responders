@@ -22,7 +22,7 @@ module Padrino
         end
       end
 
-      def put_or_post(message_type)
+      def put_or_post(message_type, error_detour)
         message = message( message_type )
         if valid?
           if request.xhr?
@@ -55,23 +55,19 @@ module Padrino
             ajax_obj[:data][:redirect] = location if location
             return ajax_obj.to_json
           else
-            if location
-              notify(:error, message)
-              redirect location
-            else
-              try_render
-            end
+            notify(:error, message)
+            try_render error_detour
           end
         end
       end
 
 
       def put()
-        put_or_post :update
+        put_or_post :update, 'edit'
       end
 
       def post()
-        put_or_post :create
+        put_or_post :create, 'new'
       end
 
       def delete()
@@ -139,8 +135,8 @@ module Padrino
         self.class.notify(kind, message, *args, &block)
       end
 
-      def try_render()
-        self.class.try_render(object)
+      def try_render(detour_name=nil)
+        self.class.try_render(object, detour_name)
       end
 
       def redirect(args)
