@@ -13,17 +13,17 @@ module Padrino
         # Trys to render and then falls back to to_format
         #
         def try_render(object)
-          begin       
-            render "#{controller_name}/#{action_name}", :strict_format => true 
+          begin
+            render "#{controller_name}/#{action_name}", :strict_format => true
           rescue Exception => e
-            if content_type == :json or mime_type(:json) == request.preferred_type 
-              return object.to_json if object.respond_to?(:to_json)    
+            if content_type == :json or mime_type(:json) == request.preferred_type
+              return object.to_json if object.respond_to?(:to_json)
             end
-            
+
             if content_type == :xml or mime_type(:xml) == request.preferred_type
               return object.to_xml if object.respond_to?(:to_xml)
-            end  
-                                           
+            end
+
             raise ::Padrino::Responders::ResponderError, e.message
           end
         end
@@ -56,13 +56,13 @@ module Padrino
           else
             t("models.#{object.class.to_s.underscore}", :default => object.class.to_s.humanize)
           end
-        end   
-        
-        ## 
+        end
+
+        ##
         # Returns url
         #
-        def back_or_default(default)    
-          return_to = session.delete(:return_to)   
+        def back_or_default(default)
+          return_to = session.delete(:return_to)
           return_to || default
         end
       end # ControllerHelpers
