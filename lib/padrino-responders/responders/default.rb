@@ -22,8 +22,8 @@ module Padrino
         end
       end
 
-      def put()
-        message = message(:update)
+      def put_or_post(message_type)
+        message = message( message_type )
         if valid?
           if request.xhr?
             ajax_obj = {
@@ -65,47 +65,13 @@ module Padrino
         end
       end
 
+
+      def put()
+        put_or_post :update
+      end
+
       def post()
-        message = message(:create)
-        if valid?
-          if request.xhr?
-            ajax_obj = {
-              :status => :success,
-              :data => {
-                object.class.to_s.singularize.downcase => object
-              }
-            }
-          end
-          if location
-            if request.xhr?
-              ajax_obj[:data][:redirect] = location
-              return ajax_obj.to_json
-            else
-              notify(:notice, message)
-              redirect location
-            end
-          else
-            try_render
-          end
-        else
-          if request.xhr?
-            ajax_obj = {
-              :status => :fail,
-              :data => {
-                :errors => object.errors
-              }
-            }
-            ajax_obj[:data][:redirect] = location if location
-            return ajax_obj.to_json
-          else
-            if location
-              notify(:error, message)
-              redirect location
-            else
-              try_render
-            end
-          end
-        end
+        put_or_post :create
       end
 
       def delete()
