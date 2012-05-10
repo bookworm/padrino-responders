@@ -121,7 +121,7 @@ module Padrino
       def valid?()
         valid = true
         # `valid?` method may override existing errors, so check for those first
-        valid &&= (object.errors.length == 0) if object.respond_to?(:errors)
+        valid &&= (object.errors.count == 0) if object.respond_to?(:errors)
         valid &&= object.valid? if object.respond_to?(:valid?)
         return valid
       end
