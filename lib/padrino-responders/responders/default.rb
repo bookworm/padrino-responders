@@ -135,7 +135,7 @@ module Padrino
       end
 
       def try_render(detour_name=nil)
-        self.class.try_render(object, detour_name)
+        self.class.try_render(object, detour_name, self)
       end
 
       def redirect(args)
@@ -156,6 +156,11 @@ module Padrino
 
       def location()
         @options[:location]
+      end  
+      
+      def layout() 
+        return @options[:layout] if @options.include?(:layout)   
+        return self.settings.layout
       end
 
       def set_status()
