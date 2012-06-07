@@ -13,8 +13,12 @@ module Padrino
         # Trys to render and then falls back to to_format
         #
         def try_render(object, detour_name=nil, responder)
-          begin
-            render "#{controller_name}/#{detour_name || action_name}", :strict_format => true, :layout => responder.layout
+          begin             
+            if responder.layout 
+              render "#{controller_name}/#{detour_name || action_name}", :strict_format => true, :layout => responder.layout  
+            else 
+              render "#{controller_name}/#{detour_name || action_name}", :strict_format => true
+            end 
           rescue Exception => e
             if content_type == :json or mime_type(:json) == request.preferred_type
               return object.to_json if object.respond_to?(:to_json)

@@ -160,7 +160,6 @@ module Padrino
       
       def layout() 
         return @options[:layout] if @options.include?(:layout)   
-        return self.settings.layout
       end
 
       def set_status()
