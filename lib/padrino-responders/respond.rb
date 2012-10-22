@@ -54,11 +54,11 @@ module Padrino
     module Respond
       
       def respond(object, *options)  
-        if Padrino::Responders.const_defined?("#{controller_name.capitalize}")
-          responder = Padrino::Responders.const_get("#{controller_name.capitalize}").new        
+        if ::Padrino::Responders.constants.include?("#{controller_name.capitalize}")
+          responder = ::Padrino::Responders.const_get("#{controller_name.capitalize}").new        
         else
           responder = Padrino::Responders::Default.new
-        end       
+        end        
         responder.options[:location] = options.shift if options.first.is_a?(String)             
         responder.options.merge!(options.extract_options!)
         responder.object  = object  
