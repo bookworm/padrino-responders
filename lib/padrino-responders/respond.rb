@@ -51,8 +51,7 @@ module Padrino
     #
     # The same happens for PUT and DELETE requests.
     #
-    module Respond
-      
+    module Respond   
       def respond(object, *options)  
         if ::Padrino::Responders.constants.include?("#{controller_name.capitalize}")
           responder = ::Padrino::Responders.const_get("#{controller_name.capitalize}").new        
