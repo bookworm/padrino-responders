@@ -6,37 +6,33 @@ module Padrino
       include Padrino::Responders::StatusCodes
       attr_accessor :options, :object, :class
 
-      def initialize()
+      def initialize
         @options = {}
       end
+      
+      # Jsend format?
+      def jsend?
+        return false
+      end
 
-      def respond()
+      def respond
         if self.class.request.put?
-          put()
+          put
         elsif self.class.request.post?
-          post()
+          post
         elsif self.class.request.delete?
-          delete()
+          delete
         else
-          default()
+          default
         end
       end
 
       def put_or_post(message_type, error_detour)
-        message = message( message_type )
+        message = message(message_type)
         if valid?
-          if request.xhr?
-            ajax_obj = {
-              :status => :success,
-              :data => {
-                object.class.to_s.singularize.downcase => object
-              }
-            }
-          end
           if location
             if request.xhr?
-              ajax_obj[:data][:redirect] = location
-              return ajax_obj.to_json
+              return object.to_json
             else
               notify(:notice, message)
               redirect location
@@ -45,15 +41,9 @@ module Padrino
             try_render
           end
         else
+          status 400
           if request.xhr?
-            ajax_obj = {
-              :status => :fail,
-              :data => {
-                :errors => object.errors
-              }
-            }
-            ajax_obj[:data][:redirect] = location if location
-            return ajax_obj.to_json
+            return object.errors.to_json
           else
             notify(:error, message)
             try_render error_detour
@@ -61,31 +51,20 @@ module Padrino
         end
       end
 
-
-      def put()
+      def put
         put_or_post :update, 'edit'
       end
 
-      def post()
+      def post
         put_or_post :create, 'new'
       end
 
-      def delete()
+      def delete
         message = message(:destroy)
-
-        if request.xhr?
-          ajax_obj = {
-            :status => :success,
-            :data => {
-              :message => message
-            }
-          }
-        end
 
         if location
           if request.xhr?
-            ajax_obj[:data][:redirect] = location
-            return ajax_obj.to_json
+            return message.to_json
           else
             notify(:notice, message)
             redirect location
@@ -95,10 +74,10 @@ module Padrino
         end
       end
 
-      def default()
+      def default
         if location
           if request.xhr?
-            {:status => :success, :data => { :redirect => location } }.to_json
+            location.to_json
           else
             redirect location
           end
@@ -126,7 +105,7 @@ module Padrino
         return 'No message found in locale'
       end
 
-      def valid?()
+      def valid?
         valid = true
         # `valid?` method may override existing errors, so check for those first
         valid &&= (object.errors.count == 0) if object.respond_to?(:errors)
@@ -134,7 +113,7 @@ module Padrino
         return valid
       end
 
-      def request()
+      def request
         self.class.request
       end
 
@@ -150,27 +129,27 @@ module Padrino
         self.class.redirect(args)
       end
 
-      def human_model_name()
+      def human_model_name
         self.class.human_model_name(object)
       end
 
-      def controller_name()
+      def controller_name
         self.class.controller_name
       end
 
-      def action_name()
+      def action_name
         self.class.action_name
       end
 
-      def location()
+      def location
         @options[:location]
       end  
       
-      def layout() 
+      def layout
         return @options[:layout] if @options.include?(:layout)   
       end
 
-      def set_status()
+      def set_status
         self.class.status = interpret_status(options.status) if options.status
       end
     end

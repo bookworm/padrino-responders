@@ -21,7 +21,12 @@ module Padrino
             end 
           rescue Exception => e
             if content_type == :json or mime_type(:json) == request.preferred_type
-              return object.to_json if object.respond_to?(:to_json)
+              if responder.jsend? && object.respond_to?(:attributes)
+                {:status => (responder.options.include?(:status) ? responder.options[:status] : 200), 
+                 :data   => {responder.human_model_name.to_sym => object.attributes}}.to_json
+              else
+                return object.to_json if object.respond_to?(:to_json)
+              end
             end
 
             if content_type == :xml or mime_type(:xml) == request.preferred_type
@@ -69,7 +74,7 @@ module Padrino
           return_to = session.delete(:return_to)
           return_to || default
         end
-      end # ControllerHelpers
-    end # Helpers
-  end # Responders
-end # Padrino
+      end 
+    end 
+  end
+end 
