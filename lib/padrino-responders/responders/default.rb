@@ -151,11 +151,11 @@ module Padrino
 
       def set_status(status=nil)
         if status.is_a?(Integer)
-          self.class.status = status
+          self.class.status status
         elsif status.is_a?(String)
-          self.class.status = interpret_status(status)
+          self.class.status interpret_status(status)
         else
-          self.class.status = interpret_status(options.status) if options.status
+          self.class.status interpret_status(options.status) if options.status
         end
       end
     end
