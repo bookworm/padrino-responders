@@ -32,13 +32,11 @@ module Padrino
         if valid?
           if location
             if request.xhr?
-              return object.to_json
+              try_render
             else
               notify(:notice, message)
               redirect location
             end
-          else
-            try_render
           end
         else
           set_status 400
