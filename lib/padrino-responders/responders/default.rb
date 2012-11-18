@@ -41,7 +41,7 @@ module Padrino
             try_render
           end
         else
-          status 400
+          set_status 400
           if request.xhr?
             return object.errors.to_json
           else
