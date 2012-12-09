@@ -15,9 +15,9 @@ module Padrino
         def try_render(object, detour_name=nil, responder)
           begin             
             if responder.layout 
-              render "#{controller_name}/#{detour_name || action_name}", :layout => responder.layout  
+              render "#{controller_name}/#{detour_name || action_name}", :layout => responder.layout, :strict_format => true  
             else 
-              render "#{controller_name}/#{detour_name || action_name}"
+              render "#{controller_name}/#{detour_name || action_name}", :strict_format => true
             end 
           rescue Exception => e
             if content_type == :json or mime_type(:json) == request.preferred_type
