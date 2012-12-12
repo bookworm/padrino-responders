@@ -1,8 +1,5 @@
 require 'padrino-core'
 require 'padrino-gen'
-require 'padrino-helpers'
-
-require 'sinatra/flash'
 
 FileSet.glob_require('padrino-responders/*.rb', __FILE__)
 FileSet.glob_require('padrino-responders/{helpers,notifiers,responders}/*.rb', __FILE__)
