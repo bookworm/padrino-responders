@@ -62,7 +62,7 @@ module Padrino
 
         if location
           if request.xhr?
-            return message.to_json
+            return {:message => message}.to_json
           else
             notify(:notice, message)
             redirect location
