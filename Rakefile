@@ -1,6 +1,5 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
 
 def read(fname)
   File.exist?(fname) ? File.open(fname).read : ""
@@ -50,7 +49,7 @@ end
 task :test => :check_dependencies
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = read('VERSION')
   rdoc.rdoc_dir = 'rdoc'
