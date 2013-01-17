@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "padrino-responders"
-  s.version = "0.1.5"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kris 'nu7hatch' Kowalik"]
-  s.date = "2013-01-16"
+  s.date = "2013-01-17"
   s.description = "      This component is used to create slim controllers without unnecessery \n      and repetitive code.\n"
   s.email = "kriss.kowalik@gmail.com"
   s.extra_rdoc_files = [
