@@ -41,17 +41,22 @@ module Padrino
         # Returns name of current action
         #
         def action_name
-          name = self.request.route_obj.instance_variable_get('@named').to_s
-          name.gsub!(/^#{controller_name}_?/, '')
-          name = 'index' if name == ''
-          name
+          if request.respond_to? :action
+            action = request.action
+          else
+            action, parameters = Padrino.mounted_apps[0].app_obj.recognize_path request.path_info
+            action = action.to_s
+            action.gsub!(/^#{controller_name}_?/, '')
+          end
+          action = 'index' if action == ''
+          action
         end
 
         ##
         # Returns name of current controller
         #
         def controller_name
-          self.request.route_obj.instance_variable_get('@controller')
+          request.controller
         end
 
         ##

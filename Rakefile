@@ -1,6 +1,5 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
 
 def read(fname)
   File.exist?(fname) ? File.open(fname).read : ""
@@ -20,7 +19,7 @@ begin
     g.authors = ["Kris 'nu7hatch' Kowalik"]
     g.add_development_dependency "riot", ">= 0.11.3"
     g.add_development_dependency "riot-rack", ">= 0"
-    g.add_dependency "padrino", "~> 0.9.10"
+    g.add_dependency "padrino", ">= 0.10.7"
     g.add_dependency "sinatra-flash", ">= 0.3.0"
   end
 rescue LoadError
@@ -50,7 +49,7 @@ end
 task :test => :check_dependencies
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = read('VERSION')
   rdoc.rdoc_dir = 'rdoc'
